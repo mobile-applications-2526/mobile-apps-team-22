@@ -11,10 +11,7 @@ const RootLayout = () => {
       <StatusBar style="light" />
       <Stack
         screenOptions={{
-          headerStyle: {
-            backgroundColor: Colors.red,
-          },
-          headerTintColor: Colors.beige,
+          headerShown: false,
         }}
       >
         <Stack.Screen name="index" options={{ title: "Hey there!" }} />
