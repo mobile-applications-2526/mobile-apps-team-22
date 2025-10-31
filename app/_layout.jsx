@@ -13,12 +13,7 @@ const RootLayout = () => {
         screenOptions={{
           headerShown: false,
         }}
-      >
-        <Stack.Screen name="index" options={{ title: "Hey there!" }} />
-        <Stack.Screen name="menu" options={{ title: "Menu" }} />
-        <Stack.Screen name="locations" options={{ title: "Locations" }} />
-        <Stack.Screen name="profile" options={{ title: "Profile" }} />
-      </Stack>
+      ></Stack>
     </>
   );
 };
