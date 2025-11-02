@@ -4,6 +4,7 @@ import { Stack } from "expo-router";
 import { Colors } from "../constants/Colors";
 import { StatusBar } from "expo-status-bar";
 
+//basic styling for every page
 const RootLayout = () => {
   // i dont know if i like statusbar white but thats what figma says
   return (
