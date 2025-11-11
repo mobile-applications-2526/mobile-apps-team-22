@@ -1,8 +1,11 @@
 import { Tabs } from "expo-router";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import rubaIcon from "../../assets/img/RubaTailBeige.png";
+import { Image } from "react-native";
+import tw from "twrnc";
 
-//header + dashboard styling
+
 export default function TabsLayout() {
   return (
     <Tabs
@@ -15,36 +18,45 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="index" 
         options={{
+          headerShown: false, 
+          
+          headerLeft: () => null, 
           title: "Home",
-          headerTitle: "Hey there!",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+            <Image source={rubaIcon} style={tw`w-8 h-8`} />
+
           ),
         }}
       />
       <Tabs.Screen
         name="menu"
         options={{
+          // Also hide the header here if you want a custom one
+          headerShown: false,
           title: "Menu",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="fast-food-outline" size={size} color={color} />
+            <Ionicons name="restaurant-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="locations"
         options={{
+          // ...and here
+          headerShown: false,
           title: "Locations",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="map-outline" size={size} color={color} />
+            <Ionicons name="location-outline" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
+          // ...and here
+          headerShown: false,
           title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
