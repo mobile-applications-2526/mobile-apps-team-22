@@ -11,7 +11,7 @@ const CustomHeader = () => {
     <View style={tw`bg-[#D94333]`}> 
       <SafeAreaView edges={['top', 'left', 'right']}>
         <StatusBar barStyle="light-content" />
-        <View style={tw`flex-row justify-between items-center px-4 pb-3 pt-2`}>
+        <View style={tw`flex-row justify-between items-center px-5 pb-3 pt-2`}>
           {/* Logo */}
           <Image
             source={require('../assets/img/RubaTailBeige.png')} 
@@ -20,7 +20,7 @@ const CustomHeader = () => {
           />
 
           {/* Text */}
-          <Text style={tw`text-[#EEDAB5] text-md font-semibold`}>
+          <Text style={tw`text-[#EEDAB5] text-base font-semibold`}>
             Hey There!
           </Text>
 

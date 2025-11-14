@@ -3,8 +3,21 @@ import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import rubaIcon from "../../assets/img/RubaTailBeige.png";
 import { Image } from "react-native";
-import tw from "twrnc";
+// twrnc is not needed here
+// import tw from "twrnc"; 
 
+// This is your Logo for the header (Rule 1)
+const HeaderLogo = () => (
+  <Image 
+    source={rubaIcon} 
+    style={{ 
+      width: 28, 
+      height: 28, 
+      tintColor: Colors.beige, 
+      marginLeft: 15 
+    }} 
+  />
+);
 
 export default function TabsLayout() {
   return (
@@ -12,6 +25,8 @@ export default function TabsLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: Colors.red },
         headerTintColor: Colors.beige,
+        headerLeft: () => <HeaderLogo />,
+
         tabBarActiveTintColor: Colors.darkBeige,
         tabBarInactiveTintColor: Colors.beige,
         tabBarStyle: { backgroundColor: Colors.red },
@@ -20,21 +35,19 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index" 
         options={{
-          headerShown: false, 
-          
-          headerLeft: () => null, 
-          title: "Home",
+          title: "Hey There!", 
+          tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Image source={rubaIcon} style={tw`w-8 h-8`} />
-
+            <Image 
+              source={rubaIcon} 
+              style={{ width: size, height: size, tintColor: color }} 
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="menu"
         options={{
-          // Also hide the header here if you want a custom one
-          headerShown: false,
           title: "Menu",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="restaurant-outline" size={size} color={color} />
@@ -44,8 +57,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="locations"
         options={{
-          // ...and here
-          headerShown: false,
           title: "Locations",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="location-outline" size={size} color={color} />
@@ -55,8 +66,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          // ...and here
-          headerShown: false,
           title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
