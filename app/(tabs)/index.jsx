@@ -1,12 +1,12 @@
-import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { Image } from "expo-image";
 
 import { Colors } from "../../constants/Colors";
 import home_image from "../../assets/img/restaurant_image.png";
-import Header from "../../components/customHeader";
 import LocationCard from "../../components/locationCard";
 import NewsletterCard from "../../components/newsletterCard";
 
@@ -53,6 +53,10 @@ const Home = () => {
     );
   };
 
+  const handleLocationClick = () => {
+    router.push('/locations');
+  }
+
   const activeLocation = locations[currentIndex];
 
   const firstNewsletterItem = newsletterCardItems[0];
@@ -69,7 +73,7 @@ const Home = () => {
         <Image 
           source={home_image} 
           style={tw`w-full h-64`} 
-          resizeMode="cover" 
+          contentFit="cover" 
         />
         {/* Location Card with Arrows */}
         <View style={tw`relative bg-[#E1503F] pb-4`}>
@@ -87,7 +91,7 @@ const Home = () => {
           <View style={tw`pt-20 flex-row justify-center items-center`}>
             <Ionicons name="location-outline" size={16} color={Colors.beige} />
             <TouchableOpacity>
-              <Text style={tw`text-[#EEDAB5] font-bold text-xs`}>
+              <Text onPress={handleLocationClick} style={tw`text-[#EEDAB5] font-bold text-xs`}>
                 Show all locations
               </Text>
             </TouchableOpacity>

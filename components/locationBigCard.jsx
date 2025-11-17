@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
+import { Image } from 'expo-image';
 
 import RubaFrontImage from '../assets/img/RubaFront.jpeg';
 
@@ -19,23 +20,23 @@ const LocationBigCard = ({ location, onPress }) => {
       {/* This 'flex-1' View will now be forced to 'h-40' by its parent */}
       <View style={tw`bg-[#E1503F] flex-1 p-4 justify-between`}>
         <View>
-          <Text style={tw`text-[#F5F2EC] font-bold text-xl`}>
+          <Text style={tw`text-[#EEDAB5] font-bold text-xl`}>
             {location.name}
           </Text>
-          <Text style={tw`text-[#F5F2EC] font-semibold text-md mt-1`}>
+          <Text style={tw`text-[#F5F2EC] font-light text-md mt-1`}>
             {location.address}
           </Text>
-          <Text style={tw`text-[#F5F2EC] font-semibold text-xs mt-1`}>
+          <Text style={tw`text-[#F5F2EC] font-medium text-xs mt-1`}>
             {location.closes}
           </Text>
         </View>
 
         <TouchableOpacity 
           // 'mt-2' is fine again now that the container has a fixed height
-          style={tw`bg-[#F5F2EC] rounded-full py-1 px-6 self-start mt-2`}
+          style={tw`bg-[#EEDAB5] rounded-full py-1 px-6 self-start mt-2`}
           onPress={onPress}
         >
-          <Text style={tw`text-[#E1503F] font-bold text-base`}>
+          <Text style={tw`text-[#E1503F] font-medium text-base`}>
             Choose
           </Text>
         </TouchableOpacity>
@@ -49,7 +50,7 @@ const LocationBigCard = ({ location, onPress }) => {
           // CHANGED: Image fills its parent container (which is now 'h-40')
           style={tw`w-full h-full`} 
           // Corrected resizeMode
-          resizeMode="cover" 
+          contentFit="cover" 
         />
       </View>
     </View>

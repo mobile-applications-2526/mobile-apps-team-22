@@ -6,7 +6,9 @@ export const locations = [
         name: 'Leuven I',
         address: 'Tiensestraat 12, 3000 Leuven',
         status: 'Open',
-        closes: 'Closes at 21:00'
+        closes: 'Closes at 21:00',
+        opening: '10:00',
+        closing: '21:00'
     },
 
     {
@@ -14,7 +16,9 @@ export const locations = [
         name: 'Leuven II',
         address: 'Bondgenotenlaan 45, 3000 Leuven',
         status: 'Open',
-        closes: 'Closes at 22:00'
+        closes: 'Closes at 22:00',
+        opening: '10:00',
+        closing: '21:00'
     },
 
     {
@@ -22,7 +26,9 @@ export const locations = [
         name: 'Antwerp',
         address: 'Meir 23, 2000 Antwerp',
         status: 'Closed',
-        closes: 'Opens at 11:00'
+        closes: 'Opens at 11:00',
+        opening: '10:00',
+        closing: '21:00'
     },
 
     {
@@ -30,7 +36,9 @@ export const locations = [
         name: 'Ghent',
         address: 'Veldstraat 67, 9000 Ghent',
         status: 'Open',
-        closes: 'Closes at 21:30'
+        closes: 'Closes at 21:30',
+        opening: '10:00',
+        closing: '21:00'
     }
 ]
 
@@ -64,5 +72,25 @@ export const newsletterCardItems = [
         promoDescription: ["Celebrate World Vegan Day with our Vegan Delight bowl. Packed with nutrients and flavor!"],
         priceLarge: 13.99,
         priceRegular: 11.99
+    }
+]
+
+export const users = [
+    {
+        id: 1, 
+        name: 'Dima Podoleanu',
+        email: 'dimapodoleanu@gmail.com',
+        city: 'Leuven',
+        dateOfBirth: '2004-10-19',
+        gender: 'Male'
+    },
+
+    {
+        id: 2, 
+        name: 'Jane Doe',
+        email: 'janeDoe@gmail.com',
+        city: 'Antwerp',
+        dateOfBirth: '1990-05-15',
+        gender: 'Female'
     }
 ]
