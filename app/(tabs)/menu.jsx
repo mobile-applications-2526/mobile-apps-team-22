@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { View, Text } from "react-native";
+import { menuItems } from "../../assets/mockData/mockData";
+import MenuCard from "../../components/menu/menuCard";
+import tw from 'twrnc';
 
-const menu = () => {
+const Menu = () => {
   return (
-    <View>
-      <Text>menu</Text>
+    <View className={tw`flex-1 p-4 bg-white`}>
+      <Text className={tw`text-lg font-semibold mb-2`}>menu</Text>
+      <MenuCard menuItem={menuItems[0]} />
     </View>
   );
 };
 
-export default menu;
-
-const styles = StyleSheet.create({});
+export default Menu;
