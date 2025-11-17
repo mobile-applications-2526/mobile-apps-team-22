@@ -94,3 +94,76 @@ export const users = [
         gender: 'Female'
     }
 ]
+
+export const menuItems = [
+    {
+        id: 1,
+        type: 'Bowl',
+        allergens: ['Gluten', 'Soy'],
+        price: 12.99,
+        name: 'Chicken Beans'
+    },
+    {
+        id: 2,
+        type: 'Bowl',
+        allergens: ['Nuts'],
+        price: 13.49,
+        name: 'Vegan Harvest Bowl'
+    },
+    {
+        id: 3,
+        type: 'Salad',
+        allergens: ['Dairy'],
+        price: 9.99,
+        name: 'Caesar Garden Salad'
+    },
+    {
+        id: 4,
+        type: 'Wrap',
+        allergens: ['Gluten', 'Eggs'],
+        price: 8.99,
+        name: 'Grilled Chicken Wrap'
+    },
+    {
+        id: 5,
+        type: 'Bowl',
+        allergens: ['Fish', 'Soy'],
+        price: 14.49,
+        name: 'Salmon Teriyaki Bowl'
+    },
+    {
+        id: 6,
+        type: 'Dessert',
+        allergens: ['Dairy', 'Gluten', 'Eggs'],
+        price: 4.99,
+        name: 'Honey Cake Slice'
+    },
+    {
+        id: 7,
+        type: 'Drink',
+        allergens: [],
+        price: 2.99,
+        name: 'Fresh Lemonade'
+    },
+    {
+        id: 8,
+        type: 'Side',
+        allergens: ['Soy'],
+        price: 3.49,
+        name: 'Roasted Sweet Potatoes'
+    },
+    {
+        id: 9,
+        type: 'Bowl',
+        allergens: ['Sesame', 'Nuts'],
+        price: 12.49,
+        name: 'Thai Peanut Veggie Bowl'
+    },
+    {
+        id: 10,
+        type: 'Salad',
+        allergens: ['Shellfish'],
+        price: 11.99,
+        name: 'Prawn & Avocado Salad'
+    }
+];
