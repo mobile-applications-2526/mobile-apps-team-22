@@ -19,10 +19,10 @@ const Menu = () => {
           const itemsOfType = menuItems.filter((item) => item.type === type);
           return (
             <View key={type}>
-              <Text style={tw`mt-10`}>{`${type}${type.endsWith('s') ? '' : 's'}`}</Text>
+              <Text style={tw`mt-10 mx-5 font-bold text-xl`}>{`${type}${type.endsWith('s') ? '' : 's'}`}</Text>
               <View style={tw`flex-row flex-wrap justify-between`}>
                 {itemsOfType.map((item, idx) => (
-                  <View key={item.id ?? idx} style={tw`w-1/2 my-4`}>
+                  <View key={item.id ?? idx} style={tw`w-1/2 p-1 my-4 `}>
                     <MenuCard menuItem={item} />
                   </View>
                 ))}

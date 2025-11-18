@@ -98,72 +98,92 @@ export const users = [
 export const menuItems = [
     {
         id: 1,
-        type: 'Bowl',
-        allergens: ['Gluten', 'Soy'],
-        price: 12.99,
-        name: 'Chicken Beans'
+        type: 'bowl',
+        name: 'Chicken Beans',
+        description: 'Roasted chicken with organic brown rice, kidney beans, corn, and honey mustard, topped with jalapeños.',
+        priceRegular: 12.99,
+        priceLarge: 14.99,
+        image: '../img/ChickenBeans.png'
     },
     {
         id: 2,
-        type: 'Bowl',
-        allergens: ['Nuts'],
-        price: 13.49,
-        name: 'Vegan Harvest Bowl'
+        type: 'bowl',
+        name: 'Vegan Harvest Bowl',
+        description: 'Quinoa, chickpeas, roasted vegetables, avocado, and tangy tahini dressing.',
+        priceRegular: 13.49,
+        priceLarge: 15.49,
+        image: '../img/HoneyHarvest.png'
     },
     {
         id: 3,
-        type: 'Salad',
-        allergens: ['Dairy'],
-        price: 9.99,
-        name: 'Caesar Garden Salad'
+        type: 'salad',
+        name: 'Caesar Garden Salad',
+        description: 'Seasonal greens with cherry tomatoes, cucumbers, feta, and lemon vinaigrette.',
+        priceRegular: 9.99,
+        priceLarge: 11.99,
+        image: '../img/CaesarsGarden.png'
     },
     {
         id: 4,
-        type: 'Wrap',
-        allergens: ['Gluten', 'Eggs'],
-        price: 8.99,
-        name: 'Grilled Chicken Wrap'
+        type: 'wrap',
+        name: 'Grilled Chicken Wrap',
+        description: 'Grilled chicken, fresh greens, and a light dressing wrapped in a soft tortilla.',
+        priceRegular: 8.99,
+        priceLarge: 10.99,
+        image: '../img/ChickenBeans.png'
     },
     {
         id: 5,
-        type: 'Bowl',
-        allergens: ['Fish', 'Soy'],
-        price: 14.49,
-        name: 'Salmon Teriyaki Bowl'
+        type: 'bowl',
+        name: 'Salmon Teriyaki Bowl',
+        description: 'Teriyaki glazed salmon on a bed of rice with steamed veggies and sesame seeds.',
+        priceRegular: 14.49,
+        priceLarge: 16.49,
+        image: '../img/HoneyHarvest.png'
     },
     {
         id: 6,
-        type: 'Dessert',
-        allergens: ['Dairy', 'Gluten', 'Eggs'],
-        price: 4.99,
-        name: 'Honey Cake Slice'
+        type: 'dessert',
+        name: 'Honey Cake Slice',
+        description: 'Moist honey cake with a delicate crumb—perfect with coffee or tea.',
+        priceRegular: 4.99,
+        priceLarge: 6.49,
+        image: '../img/ChickenBeans.png'
     },
     {
         id: 7,
-        type: 'Drink',
-        allergens: [],
-        price: 2.99,
-        name: 'Fresh Lemonade'
+        type: 'drink',
+        name: 'Fresh Lemonade',
+        description: 'House-made lemonade with freshly squeezed lemons and a hint of mint.',
+        priceRegular: 2.99,
+        priceLarge: 3.99,
+        image: '../img/CaesarsGarden.png'
     },
     {
         id: 8,
-        type: 'Side',
-        allergens: ['Soy'],
-        price: 3.49,
-        name: 'Roasted Sweet Potatoes'
+        type: 'side',
+        name: 'Roasted Sweet Potatoes',
+        description: 'Seasoned and roasted sweet potato wedges with a light glaze.',
+        priceRegular: 3.49,
+        priceLarge: 4.99,
+        image: '../img/HoneyHarvest.png'
     },
     {
         id: 9,
-        type: 'Bowl',
-        allergens: ['Sesame', 'Nuts'],
-        price: 12.49,
-        name: 'Thai Peanut Veggie Bowl'
+        type: 'bowl',
+        name: 'Thai Peanut Veggie Bowl',
+        description: 'Mixed veggies and rice tossed in a creamy Thai peanut sauce, topped with sesame.',
+        priceRegular: 12.49,
+        priceLarge: 14.49,
+        image: '../img/ChickenBeans.png'
     },
     {
         id: 10,
-        type: 'Salad',
-        allergens: ['Shellfish'],
-        price: 11.99,
-        name: 'Prawn & Avocado Salad'
+        type: 'salad',
+        name: 'Prawn & Avocado Salad',
+        description: 'Fresh prawns, ripe avocado, mixed greens and a citrus dressing.',
+        priceRegular: 11.99,
+        priceLarge: 13.99,
+        image: '../img/CaesarsGarden.png'
     }
 ];
