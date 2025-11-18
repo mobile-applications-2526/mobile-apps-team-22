@@ -1,14 +1,20 @@
-import { View, Text } from "react-native";
-import { menuItems } from "../../assets/mockData/mockData";
-import MenuCard from "../../components/menu/menuCard";
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
 
 const Menu = () => {
   return (
-    <View className={tw`flex-1 p-4 bg-white`}>
-      <Text className={tw`text-lg font-semibold mb-2`}>menu</Text>
-      <MenuCard menuItem={menuItems[0]} />
-    </View>
+    <SafeAreaView style={tw`flex-1 bg-white`} edges={['']}>
+      <View style={tw`flex-1 justify-between`}>
+        <View style={tw`px-5 py-4 border-b border-gray-200`}>
+          <Text style={tw`text-2xl font-bold`}>Menu</Text>
+          <Text style={tw`text-base text-gray-600 mt-1`}>
+            Explore our offerings.
+          </Text>
+        </View>
+
+      </View>
+    </SafeAreaView>
   );
 };
 
