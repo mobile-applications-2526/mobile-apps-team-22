@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text} from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
-import rubaLogoWhite from '../assets/img/RubaTailBeige.png'; // Check this path!
+import rubaLogoWhite from '../../assets/img/RubaTailBeige.png'; // Check this path!
 import { Image } from 'expo-image';
 
 const LocationCard = ({ location }) => {
