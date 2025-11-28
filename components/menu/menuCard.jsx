@@ -10,16 +10,16 @@ const MenuCard = ({ menuItem }) => {
   return (
     <View
       style={[
-        tw`bg-[#E1503F] rounded-lg overflow-hidden}`,
+        tw`bg-[#E1503F] rounded-lg overflow-hidden border-[1px] border-gray-200 shadow-lg`,
         { width: CARD_WIDTH, height: CARD_HEIGHT },
       ]}
     >
       <View
-        style={tw`h-3/5 bg-[#EEDAB5] items-center justify-center rounded-lg`}
+        style={tw`h-3/5 bg-[#EEDAB5] items-center justify-center`}
       >
         <Image
           source={menuItem.image}
-          style={tw`w-full h-full rounded-lg`}
+          style={tw`w-full h-full`}
           contentFit="cover"
         />
       </View>

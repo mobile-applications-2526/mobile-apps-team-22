@@ -107,7 +107,7 @@ export const users = [
 export const menuItems = [
   {
     id: 1,
-    type: "bowl",
+    type: "BOWL",
     name: "Chicken Beans",
     description:
       "Roasted chicken with organic brown rice, kidney beans, corn, and honey mustard, topped with jalapeños.",
@@ -117,7 +117,7 @@ export const menuItems = [
   },
   {
     id: 2,
-    type: "bowl",
+    type: "BOWL",
     name: "Vegan Harvest Bowl",
     description:
       "Quinoa, chickpeas, roasted vegetables, avocado, and tangy tahini dressing.",
@@ -127,7 +127,7 @@ export const menuItems = [
   },
   {
     id: 3,
-    type: "salad",
+    type: "SALAD",
     name: "Caesar Garden Salad",
     description:
       "Seasonal greens with cherry tomatoes, cucumbers, feta, and lemon vinaigrette.",
@@ -137,7 +137,7 @@ export const menuItems = [
   },
   {
     id: 4,
-    type: "wrap",
+    type: "WRAP",
     name: "Grilled Chicken Wrap",
     description:
       "Grilled chicken, fresh greens, and a light dressing wrapped in a soft tortilla.",
@@ -147,7 +147,7 @@ export const menuItems = [
   },
   {
     id: 5,
-    type: "bowl",
+    type: "BOWL",
     name: "Salmon Teriyaki Bowl",
     description:
       "Teriyaki glazed salmon on a bed of rice with steamed veggies and sesame seeds.",
@@ -157,7 +157,7 @@ export const menuItems = [
   },
   {
     id: 6,
-    type: "dessert",
+    type: "DESSERT",
     name: "Honey Cake Slice",
     description:
       "Moist honey cake with a delicate crumb—perfect with coffee or tea.",
@@ -167,7 +167,7 @@ export const menuItems = [
   },
   {
     id: 7,
-    type: "drink",
+    type: "DRINK",
     name: "Fresh Lemonade",
     description:
       "House-made lemonade with freshly squeezed lemons and a hint of mint.",
@@ -177,7 +177,7 @@ export const menuItems = [
   },
   {
     id: 8,
-    type: "side",
+    type: "SIDE",
     name: "Roasted Sweet Potatoes",
     description: "Seasoned and roasted sweet potato wedges with a light glaze.",
     priceRegular: 3.49,
@@ -186,7 +186,7 @@ export const menuItems = [
   },
   {
     id: 9,
-    type: "bowl",
+    type: "BOWL",
     name: "Thai Peanut Veggie Bowl",
     description:
       "Mixed veggies and rice tossed in a creamy Thai peanut sauce, topped with sesame.",
@@ -196,7 +196,7 @@ export const menuItems = [
   },
   {
     id: 10,
-    type: "salad",
+    type: "SALAD",
     name: "Prawn & Avocado Salad",
     description:
       "Fresh prawns, ripe avocado, mixed greens and a citrus dressing.",
