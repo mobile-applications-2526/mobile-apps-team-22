@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
 
 import { router } from 'expo-router';
-import ProfileDetailsList from '../../components/profileDetails.jsx';
+import ProfileDetailsList from '../../components/profile/profileDetails.jsx';
 import { users } from '../../assets/mockData/mockData.js'; 
 
 const ProfilePage = () => {

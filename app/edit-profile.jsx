@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
 import { Stack, router } from 'expo-router';
 
-import ProfileEditForm from '../components/profileEditForm.jsx';
+import ProfileEditForm from '../components/profile/profileEditForm.jsx';
 import { users } from '../assets/mockData/mockData.js'; 
 
 const EditProfilePage = () => {

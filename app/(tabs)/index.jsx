@@ -7,7 +7,7 @@ import { Image } from "expo-image";
 
 import { Colors } from "../../constants/Colors";
 import home_image from "../../assets/img/restaurant_image.png";
-import LocationCard from "../../components/locationCard";
+import LocationCard from "../../components/location/locationCard";
 import NewsletterCard from "../../components/newsletterCard";
 
 import { newsletterCardItems } from "../../assets/mockData/mockData";

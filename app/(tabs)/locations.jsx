@@ -46,7 +46,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
 
 // 1. Import your new list component
-import LocationList from '../../components/locationList.jsx';
+import LocationList from '../../components/location/locationList.jsx';
 
 const Locations = () => {
   return (

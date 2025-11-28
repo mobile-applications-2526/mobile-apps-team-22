@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 import { Image } from 'expo-image';
 
-import RubaFrontImage from '../assets/img/RubaFront.jpeg';
+import RubaFrontImage from '../../assets/img/RubaFront.jpeg';
 
 const LocationBigCard = ({ location, onPress }) => {
 

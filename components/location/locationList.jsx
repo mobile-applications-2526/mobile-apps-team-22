@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Linking } from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
 
-import { locations } from '../assets/mockData/mockData.js';
+import { locations } from '../../assets/mockData/mockData.js';
 
 const LocationCard = ({ item }) => {
   
