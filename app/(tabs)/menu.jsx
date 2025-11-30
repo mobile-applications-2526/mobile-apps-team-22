@@ -1,42 +1,162 @@
-import { View, Text, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import MenuCard from "../../components/menu/menuCard";
-import { menuItems } from "../../assets/mockData/mockData";
-import tw from "twrnc";
+// import React from 'react';
+// import { ScrollView } from 'react-native';
+// import TypeContainer from '../../components/menu/typeContainer.jsx'; 
+// import { menuItems } from '../../assets/mockData/mockData.js';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Menu = () => {
-  const types = [...new Set(menuItems.map((item) => item.type))];
+// const MenuScreen = () => {
 
+//   const getItemsByType = (type) => {
+//     return menuItems.filter((item) => item.type === type);
+//   };
+
+//   const warmBowls = getItemsByType('WarmBowl');
+//   const saladBowls = getItemsByType('SaladBowl');
+//   const sides = getItemsByType('SideDish');
+//   const proteinDrinks = getItemsByType('ProteinDrink');
+//   const drinks = getItemsByType('Drink');
+//   const proteinSnacks = getItemsByType('ProteinSnack');
+//   const warmDrinks = getItemsByType('WarmDrink');
+  
+//   return (
+//     <SafeAreaView className="flex-1 bg-white">
+//       <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
+        
+//         <TypeContainer 
+//           title="Warm Bowls" 
+//           items={warmBowls} 
+//           onPressSeeMore={() => console.log('See more Warm Bowls')}
+//         />
+
+//         <TypeContainer 
+//           title="Salad Bowls" 
+//           items={saladBowls} 
+//           onPressSeeMore={() => console.log('See more Salad Bowls')}
+//         />
+
+//           <TypeContainer 
+//           title="Side Dishes" 
+//           items={sides} 
+//           onPressSeeMore={() => console.log('See more Sides')}
+//         />
+
+//          <TypeContainer 
+//           title="Drinks" 
+//           items={drinks} 
+//           onPressSeeMore={() => console.log('See more Drinks')}
+//         />
+
+//         <TypeContainer 
+//           title="Protein Drinks" 
+//           items={proteinDrinks} 
+//           onPressSeeMore={() => console.log('See more Protein Drinks')}
+//         />
+
+//           <TypeContainer 
+//           title="Protein Snacks" 
+//           items={proteinSnacks} 
+//           onPressSeeMore={() => console.log('See more Protein Snacks')}
+//         />
+
+//           <TypeContainer 
+//           title="Warm Drinks" 
+//           items={warmDrinks} 
+//           onPressSeeMore={() => console.log('See more Warm Drinks')}
+//         />
+
+
+//       </ScrollView>
+//     </SafeAreaView>
+//   );
+// };
+
+// export default MenuScreen;
+
+
+import React from 'react';
+import { ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router'; // 1. Import Router
+
+import TypeContainer from '../../components/menu/typeContainer.jsx'; 
+import { menuItems } from '../../assets/mockData/mockData.js';
+
+const MenuScreen = () => {
+  const router = useRouter(); // 2. Initialize Router
+
+  const getItemsByType = (type) => {
+    return menuItems.filter((item) => item.type === type);
+  };
+
+  // Data Filtering
+  const warmBowls = getItemsByType('WarmBowl');
+  const saladBowls = getItemsByType('SaladBowl');
+  const sides = getItemsByType('SideDish');
+  const proteinDrinks = getItemsByType('ProteinDrink');
+  const drinks = getItemsByType('Drink');
+  const proteinSnacks = getItemsByType('ProteinSnack');
+  const warmDrinks = getItemsByType('WarmDrink');
+
+  // 3. Navigation Handler
+  const handleSeeMore = (type, title) => {
+    router.push({
+      pathname: "/categoryPage", 
+      params: { 
+        categoryType: type,
+        categoryTitle: title
+      }
+    });
+  };
+  
   return (
-    <SafeAreaView style={tw`flex-1 bg-white`}>
-      <ScrollView contentContainerStyle={tw`px-3`}>
-        <View style={tw`px-5 py-4 border-b border-gray-200 w-full`}>
-          <Text style={tw`text-2xl font-bold`}>Menu</Text>
-          <Text style={tw`text-base text-gray-600 mt-1`}>
-            Explore our offerings.
-          </Text>
-        </View>
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
+        
+        <TypeContainer 
+          title="Warm Bowls" 
+          items={warmBowls} 
+          onPressSeeMore={() => handleSeeMore('WarmBowl', 'Warm Bowls')}
+        />
 
-        {types.map((type) => {
-          const itemsOfType = menuItems.filter((item) => item.type === type);
-          return (
-            <View key={type} style={tw` my-1  `}>
-              <Text style={tw`my-3 mx-5 font-bold text-3xl`}>{`${type}${
-                type.endsWith("S") ? "" : "S"
-              }`}</Text>
-              <View style={tw`flex-row flex-wrap justify-between bg-[#EEDAB5] p-3 rounded-3`}>
-                {itemsOfType.map((item, idx) => (
-                  <View key={item.id ?? idx} style={tw`w-1/2 px-1 my-2 `}>
-                    <MenuCard menuItem={item} />
-                  </View>
-                ))}
-              </View>
-            </View>
-          );
-        })}
+        <TypeContainer 
+          title="Salad Bowls" 
+          items={saladBowls} 
+          onPressSeeMore={() => handleSeeMore('SaladBowl', 'Salad Bowls')}
+        />
+
+        <TypeContainer 
+          title="Side Dishes" 
+          items={sides} 
+          onPressSeeMore={() => handleSeeMore('SideDish', 'Side Dishes')}
+        />
+
+        <TypeContainer 
+          title="Drinks" 
+          items={drinks} 
+          onPressSeeMore={() => handleSeeMore('Drink', 'Drinks')}
+        />
+
+        <TypeContainer 
+          title="Protein Drinks" 
+          items={proteinDrinks} 
+          onPressSeeMore={() => handleSeeMore('ProteinDrink', 'Protein Drinks')}
+        />
+
+        <TypeContainer 
+          title="Protein Snacks" 
+          items={proteinSnacks} 
+          onPressSeeMore={() => handleSeeMore('ProteinSnack', 'Protein Snacks')}
+        />
+
+        <TypeContainer 
+          title="Warm Drinks" 
+          items={warmDrinks} 
+          onPressSeeMore={() => handleSeeMore('WarmDrink', 'Warm Drinks')}
+        />
+
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Menu;
+export default MenuScreen;
