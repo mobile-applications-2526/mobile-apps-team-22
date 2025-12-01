@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native'; // Removed Alert import
 import tw from 'twrnc';
