@@ -1,14 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Stack, router, SplashScreen } from 'expo-router';
-import { Image } from 'expo-image';
-import { Colors } from '../constants/Colors'; 
-import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity, View, Animated, StyleSheet } from 'react-native';
-import * as Progress from 'react-native-progress';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Stack,
+  router,
+  SplashScreen,
+  useRouter,
+  useSegments,
+} from "expo-router";
+import { Image } from "expo-image";
+import { Colors } from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity, View, Animated, StyleSheet } from "react-native";
+import * as Progress from "react-native-progress";
 
-// 1. Import BOTH Context Providers
-import { LocationProvider } from '../context/LocationContext';
-import { CartProvider } from '../context/CartContext'; 
+import { LocationProvider } from "../context/LocationContext";
+import { CartProvider } from "../context/CartContext";
+import { AuthProvider, useAuth } from "../context/AuthContext";
 
 const HeaderChatIcon = () => (
   <TouchableOpacity>
@@ -84,8 +90,25 @@ function LoadingScreen({ onFinished }) {
   );
 }
 
-// --- YOUR ROOT LAYOUT ---
-export default function RootLayout() {
+const InitialLayout = () => {
+  const { session, loading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (loading) return;
+
+    const inAuthGroup = segments[0] === "(auth)";
+
+    if (session && !inAuthGroup) {
+      // do nothing
+    } else if (!session && !inAuthGroup) {
+      router.replace("/login");
+    } else if (session && inAuthGroup) {
+      router.replace("/");
+    }
+  }, [session, loading, segments, router]);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -104,52 +127,52 @@ export default function RootLayout() {
   }, [isLoaded]);
 
   return (
-    // 2. Wrap LocationProvider -> CartProvider -> View
-    <LocationProvider>
-      <CartProvider> 
-        <View style={{ flex: 1 }}>
-          <Stack
-            screenOptions={{
-              headerStyle: { backgroundColor: Colors.red },
-              headerTintColor: Colors.beige, 
-              headerTitleAlign: 'center', 
-              headerBackTitleVisible: false,
-              headerLeft: () => <CustomBackButton />, 
-              headerRight: () => <HeaderChatIcon />, 
-              headerLeftContainerStyle: { backgroundColor: 'transparent' },
-              headerRightContainerStyle: { backgroundColor: 'transparent' },
-            }}
-          >
-            <Stack.Screen 
-              name="(tabs)" 
-              options={{ headerShown: false }} 
-            />
-            <Stack.Screen 
-              name="newsletter" 
-              options={{ title: 'Newsletter' }} 
-            />
-            <Stack.Screen 
-              name="edit-profile" 
-              options={{ title: 'Edit Profile' }} 
-            />
-            <Stack.Screen name="itemDetailsPage" options={{ title: 'Menu' }} />
-            <Stack.Screen name="locationSelectionPage" options={{ title: 'Locations' }} />
-            
-            {/* 3. Add CartPage here so the header works */}
-            <Stack.Screen name="cartPage" options={{ title: 'Cart' }} />
-          </Stack>
+    <View style={{ flex: 1 }}>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: Colors.red },
+          headerTintColor: Colors.beige,
+          headerTitleAlign: "center",
+          headerBackTitleVisible: false,
+          headerLeft: () => <CustomBackButton />,
+          headerRight: () => <HeaderChatIcon />,
+          headerLeftContainerStyle: { backgroundColor: "transparent" },
+          headerRightContainerStyle: { backgroundColor: "transparent" },
+        }}
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="newsletter" options={{ title: "Newsletter" }} />
+        <Stack.Screen name="edit-profile" options={{ title: "Edit Profile" }} />
+        <Stack.Screen name="itemDetailsPage" options={{ title: "Menu" }} />
+        <Stack.Screen
+          name="locationSelectionPage"
+          options={{ title: "Locations" }}
+        />
+        <Stack.Screen name="cartPage" options={{ title: "Cart" }} />
+      </Stack>
 
-          {!isAnimationFinished && (
-            <Animated.View 
-              style={[styles.loadingContainer, { opacity: fadeAnim }]}
-              pointerEvents="none" 
-            >
-              <LoadingScreen onFinished={() => setIsLoaded(true)} />
-            </Animated.View>
-          )}
-        </View>
-      </CartProvider>
-    </LocationProvider>
+      {!isAnimationFinished && (
+        <Animated.View
+          style={[styles.loadingContainer, { opacity: fadeAnim }]}
+          pointerEvents="none"
+        >
+          <LoadingScreen onFinished={() => setIsLoaded(true)} />
+        </Animated.View>
+      )}
+    </View>
+  );
+};
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <LocationProvider>
+        <CartProvider>
+          <InitialLayout />
+        </CartProvider>
+      </LocationProvider>
+    </AuthProvider>
   );
 }
 

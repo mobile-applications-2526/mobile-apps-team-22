@@ -5,11 +5,10 @@ import tw from 'twrnc';
 
 import { router } from 'expo-router';
 import ProfileDetailsList from '../../components/profile/profileDetails.jsx';
-import { users } from '../../assets/mockData/mockData.js'; 
+import { useAuth } from '../../context/AuthContext.jsx'; 
 
 const ProfilePage = () => {
-
-  const firstUser = users[0];
+  const { user, signOut } = useAuth();
 
   const handleEditPress = () => {
     router.push('/edit-profile');
@@ -25,18 +24,25 @@ const ProfilePage = () => {
             Personal Details
           </Text>
           
-          {/* 3. Pass the 'firstUser' object as a prop */}
-          <ProfileDetailsList user={firstUser} />
+          {user && <ProfileDetailsList user={{...user, name: user.email}} />}
         </View>
 
-        {/* Bottom Section (Button) */}
+        {/* Bottom Section (Buttons) */}
         <View style={tw`py-4`}>
           <TouchableOpacity 
-            style={tw`bg-[#E1503F] rounded-full py-3 items-center`}
+            style={tw`bg-[#E1503F] rounded-full py-3 items-center mb-4`}
             onPress={handleEditPress}
           >
             <Text style={tw`text-[#EEDAB5] font-bold text-lg`}>
               Edit Profile
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={tw`bg-gray-200 rounded-full py-3 items-center`}
+            onPress={signOut}
+          >
+            <Text style={tw`text-gray-700 font-bold text-lg`}>
+              Sign Out
             </Text>
           </TouchableOpacity>
         </View>
