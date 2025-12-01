@@ -58,3 +58,6 @@ const LocationBigCard = ({ location, onPress }) => {
 };
 
 export default LocationBigCard;
+
+
+
