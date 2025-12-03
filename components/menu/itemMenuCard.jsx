@@ -13,17 +13,15 @@ const ItemMenuCard = ({ item }) => {
 
   const handlePress = () => {
     if (selectedLocation) {
-      // SCENARIO A: Location is already chosen. Go straight to details.
       router.push({
         pathname: "/itemDetailsPage",
         params: { itemId: item.id }
       });
     } else {
-      // SCENARIO B: No location yet. Go to Location page, but PASS the item ID.
       router.push({
-        pathname: "/locationSelectionPage", // Ensure this matches your file path
+        pathname: "/locationSelectionPage", 
         params: { 
-          pendingItemId: item.id // We call it 'pending' because we are holding onto it
+          pendingItemId: item.id
         }
       });
     }
@@ -44,7 +42,6 @@ const ItemMenuCard = ({ item }) => {
         />
       </View>
       
-      {/* Name Text */}
       <Text style={tw` text-md font-bold text-black text-center max-w-[150px]`}>
         {item.name}
       </Text>

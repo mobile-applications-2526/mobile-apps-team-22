@@ -8,7 +8,6 @@ const TypeContainer = ({ title, items, onPressSeeMore }) => {
 
   return (
     <View style={tw`mb-6 w-full`}>
-      {/* Header Section: Changed to justify-between for safer layout */}
       <View style={tw`flex-row items-end justify-between px-5 mb-2`}>
         <Text style={tw`text-xl font-bold text-black`}>
           {title}
@@ -21,7 +20,6 @@ const TypeContainer = ({ title, items, onPressSeeMore }) => {
 
       <View style={tw`h-[1px] bg-gray-300 mx-5 mb-2`} />
 
-      {/* Items Row: justify-around spreads them evenly */}
       <View style={tw`flex-row justify-around px-2`}>
         {itemsToDisplay.map((item) => (
           <ItemMenuCard key={item.id} item={item} />

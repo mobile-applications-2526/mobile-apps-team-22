@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native'; // Removed Alert import
+import { View, Text, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
@@ -9,7 +9,6 @@ import { useLocation } from '../../context/LocationContext';
 import { useCart } from '../../context/CartContext'; 
 import rubaLogoWhite from '../../assets/img/RubaTailBeige.png';
 
-// 1. Import your new Custom Alert
 import CustomAlert from '../customAlert.jsx';
 
 const LocationCard = ({ location }) => {
@@ -17,13 +16,12 @@ const LocationCard = ({ location }) => {
   const { selectedLocation, setSelectedLocation } = useLocation();
   const { cartItems, clearCart } = useCart(); 
 
-  // 2. Add State for the Modal
   const [isAlertVisible, setAlertVisible] = useState(false);
 
   if (!location) return null;
 
   const handleTakeOutPress = () => {
-    // A. Simple Checks (Same location or empty cart)
+
     const isSameLocation = selectedLocation && selectedLocation.id === location.id;
     const isCartEmpty = cartItems.length === 0;
 
@@ -33,21 +31,18 @@ const LocationCard = ({ location }) => {
       return;
     }
 
-    // B. Conflict found -> Show Custom Alert
     setAlertVisible(true);
   };
 
   const handleConfirmSwitch = () => {
-    // The logic to clear and switch
     clearCart();
     setSelectedLocation(location);
-    setAlertVisible(false); // Close modal
+    setAlertVisible(false);
     router.push('/(tabs)/menu');
   };
 
   return (
     <>
-      {/* 3. Render the Custom Alert Component */}
       <CustomAlert 
         visible={isAlertVisible}
         title="Start a new order?"

@@ -13,7 +13,6 @@ const LocationCard = ({ item }) => {
 
   return (
     <View style={tw`flex-row justify-between items-center py-5 border-b border-gray-200`}>
-      {/* Left Side: Info */}
       <View style={tw`flex-1 mr-4`}>
         <View style={tw`flex-row items-center mb-1`}>
           <Text style={tw`text-lg font-semibold uppercase`}>{item.name}📍</Text>
@@ -26,7 +25,6 @@ const LocationCard = ({ item }) => {
         </View>
       </View>
 
-      {/* Right Side: Button */}
       <TouchableOpacity
         style={tw`bg-[#E1503F] rounded-full py-3 px-4`}
         onPress={handleGetDirections}

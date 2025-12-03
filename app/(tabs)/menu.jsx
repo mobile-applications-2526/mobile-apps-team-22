@@ -1,12 +1,11 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native'; // Added View
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
 import TypeContainer from '../../components/menu/typeContainer.jsx'; 
 import { menuItems } from '../../assets/mockData/mockData.js';
 
-// 1. Import the new Floating Button
 import CartSummaryButton from '../../components/cart/cartSummaryButton.jsx';
 
 const MenuScreen = () => {
@@ -83,7 +82,6 @@ const MenuScreen = () => {
 
       </ScrollView>
 
-      {/* 2. Add the Floating Button Here */}
       <CartSummaryButton />
 
     </SafeAreaView>

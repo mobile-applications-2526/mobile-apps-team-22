@@ -5,35 +5,34 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-// 1. IMPORT THE CONTEXT HOOK
 import { useCart } from '../context/CartContext.jsx';
 
 const ItemDetails = ({ item }) => {
-    // 2. INITIALIZE THE HOOK
+
     const { addToCart } = useCart();
 
     const imageSource = item.image; 
 
-    // Safety check
+
     if (!imageSource) {
         console.error("Image source is missing for:", item.name);
     }
 
-    // Logic for Large/Regular pricing
+
     const hasLargeOption = item.priceLarge > 0;
     const initialSize = hasLargeOption ? 'Large' : 'Regular';
 
     const [selectedSize, setSelectedSize] = useState(initialSize);
     const [quantity, setQuantity] = useState(1);
 
-    // Calculate dynamic price based on selection
+
     const currentPrice = selectedSize === 'Large' ? item.priceLarge : item.priceRegular;
 
     const handleSetQuantity = (delta) => {
         setQuantity(prev => Math.max(1, prev + delta));
     };
 
-    // 3. THE UPDATED ADD TO CART FUNCTION
+
     const handleAddToCart = () => {
         const itemToAdd = {
             ...item,
@@ -43,8 +42,6 @@ const ItemDetails = ({ item }) => {
         
         addToCart(itemToAdd, quantity);
 
-        // Simply go back to the previous screen (The Menu)
-        // The user will see the red cart button appear/update immediately.
         router.back();
     };
 

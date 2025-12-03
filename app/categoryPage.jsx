@@ -6,7 +6,6 @@ import tw from 'twrnc';
 import ItemMenuCard from '../components/menu/itemMenuCard.jsx'; 
 import { menuItems } from '../assets/mockData/mockData.js';
 
-// 1. Import the Button
 import CartSummaryButton from '../components/cart/cartSummaryButton.jsx'; 
 
 const CategoryPage = () => {
@@ -17,12 +16,9 @@ const CategoryPage = () => {
 
   return (
     <View style={tw`flex-1 bg-white`}>
-      {/* Set the Header Title dynamically */}
       <Stack.Screen options={{ title: categoryTitle || 'Menu' }} />
 
-      {/* 2. Increase paddingBottom so the last items aren't hidden behind the button */}
       <ScrollView contentContainerStyle={tw`pb-32`}>
-        {/* Grid Container */}
         <View style={tw`flex-row flex-wrap justify-center gap-4 mt-4`}>
           
           {filteredItems.length > 0 ? (
@@ -38,7 +34,6 @@ const CategoryPage = () => {
         </View>
       </ScrollView>
 
-      {/* 3. Add the Button here */}
       <CartSummaryButton />
       
     </View>

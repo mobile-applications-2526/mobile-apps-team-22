@@ -30,7 +30,6 @@
 //   return (
 //     <View style={{ 
 //       backgroundColor: Colors.red,
-      
 //       paddingTop: insets.top, 
 //     }}>
 //       <View style={{ 
@@ -143,14 +142,19 @@
 
 //   useEffect(() => {
 //     if (loading) return;
-//     const inAuthGroup = segments[0] === "(auth)";
-//     if (session && !inAuthGroup) {
 
-//     } else if (!session && !inAuthGroup) {
-//       router.replace("/login");
-//     } else if (session && inAuthGroup) {
+//     const inAuthGroup = segments[0] === "(auth)";
+
+//     // OLD LOGIC (Deleted):
+//     // if (!session && !inAuthGroup) router.replace("/login");
+
+//     // NEW LOGIC:
+//     // If user is logged in and tries to go to Login/Register, send them Home.
+//     if (session && inAuthGroup) {
 //       router.replace("/");
 //     }
+//     // We NO LONGER kick them out if they are !session.
+//     // They are allowed to roam free.
 //   }, [session, loading, segments, router]);
 
 //   const [isLoaded, setIsLoaded] = useState(false);
@@ -250,7 +254,6 @@ import { LocationProvider } from "../context/LocationContext";
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 
-
 const CustomNavBar = ({ navigation, route, options, back }) => {
   const insets = useSafeAreaInsets(); 
   const title = options.title || "";
@@ -270,7 +273,6 @@ const CustomNavBar = ({ navigation, route, options, back }) => {
         justifyContent: 'space-between',
         paddingHorizontal: 16, 
       }}>
-        
         
         <View style={{ width: 50, alignItems: 'flex-start' }}>
           {showBackButton && (
@@ -375,17 +377,11 @@ const InitialLayout = () => {
     if (loading) return;
 
     const inAuthGroup = segments[0] === "(auth)";
-
-    // OLD LOGIC (Deleted):
-    // if (!session && !inAuthGroup) router.replace("/login");
-
-    // NEW LOGIC:
-    // If user is logged in and tries to go to Login/Register, send them Home.
+    
     if (session && inAuthGroup) {
       router.replace("/");
     }
-    // We NO LONGER kick them out if they are !session.
-    // They are allowed to roam free.
+
   }, [session, loading, segments, router]);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -409,22 +405,18 @@ const InitialLayout = () => {
     <View style={{ flex: 1 }}>
       <Stack
         screenOptions={{
-          // Pass the Custom Navbar function to 'header'
           header: (props) => <CustomNavBar {...props} />,
-          // We still set this for safety, though 'header' prop overrides it
           headerShown: true, 
         }}
       >
-        {/* Hide header for Tabs (Home) and Auth */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         
-        {/* These screens use the CustomNavBar */}
         <Stack.Screen name="newsletter" options={{ title: "Newsletter" }} />
         <Stack.Screen name="edit-profile" options={{ title: "Edit Profile" }} />
         <Stack.Screen name="itemDetailsPage" options={{ title: "Menu" }} />
         <Stack.Screen name="locationSelectionPage" options={{ title: "Locations" }} />
-        <Stack.Screen name="CartPage" options={{ title: "Cart" }} />
+        <Stack.Screen name="cartPage" options={{ title: "Cart" }} />
         <Stack.Screen name="categoryPage" options={{ title: "Menu" }} />
       </Stack>
 

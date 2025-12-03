@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'twrnc';
 
-// Helper component
 const DetailRow = ({ label, value, iconName }) => (
   <View style={tw`flex-row justify-between items-center py-4`}>
     <View>
