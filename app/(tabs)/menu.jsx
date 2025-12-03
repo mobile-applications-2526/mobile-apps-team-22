@@ -35,10 +35,8 @@ const MenuScreen = () => {
   };
   
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      {/* Add paddingBottom to ScrollView content 
-         so the last item isn't hidden behind the floating button 
-      */}
+    <SafeAreaView edges={["up"]} className="flex-1 bg-white">
+      
       <ScrollView contentContainerStyle={{ paddingVertical: 20, paddingBottom: 100 }}>
         
         <TypeContainer 

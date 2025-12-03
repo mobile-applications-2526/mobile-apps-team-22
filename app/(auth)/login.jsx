@@ -23,7 +23,6 @@ const Login = () => {
     if (error) {
       Alert.alert('Error', error.message);
     } else {
-      // The onAuthStateChange in AuthProvider will handle the redirect
     }
   };
 
