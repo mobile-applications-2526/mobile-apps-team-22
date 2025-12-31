@@ -10,7 +10,7 @@ import { useLocation } from '../context/LocationContext.jsx';
 const LocationSelectionPage = () => {
   const router = useRouter();
   
-  const { pendingItemId, fromCart } = useLocalSearchParams(); 
+  const { pendingItemId, fromCart, source } = useLocalSearchParams(); 
   const { setSelectedLocation } = useLocation(); 
 
   const handleChooseLocation = (location) => {
@@ -22,7 +22,7 @@ const LocationSelectionPage = () => {
     else if (pendingItemId) {
       router.replace({
         pathname: "/itemDetailsPage",
-        params: { itemId: pendingItemId }
+        params: { itemId: pendingItemId, source: source || 'menu' }
       });
     } 
     else {
