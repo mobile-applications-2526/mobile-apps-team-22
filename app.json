@@ -21,10 +21,19 @@
         "foregroundImage": "./assets/img/RubaLoadingPage.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.mobileappsteam22"
     },
-    "web": {
+    "web": {},
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3ef75fa6-a0f5-4faf-84d1-a920049e9d4a"
+      }
     },
-    "plugins": ["expo-router"]
+    "owner": "sucll"
   }
 }
