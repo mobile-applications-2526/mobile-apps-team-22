@@ -53,6 +53,7 @@ export const newsletterCardItems = [
       "Just click add to cart and 2 bowls are automatically added to the cart.",
       "This offer is app exclusive and cannot be combined with other offers.",
     ],
+    promoType: "bogo", // buy one get one free
     priceLarge: 14.99,
     priceRegular: 12.99,
   },
@@ -65,7 +66,10 @@ export const newsletterCardItems = [
       "A refreshing mix of seasonal greens, cherry tomatoes, cucumbers, feta cheese, and a zesty lemon vinaigrette.",
     promoDescription: [
       "Enjoy a light and healthy meal this summer with our Summer Salad. Perfect for those warm days!",
+      "Get 20% off on this refreshing bowl - automatically applied at checkout!",
     ],
+    promoType: "discount", // percentage discount
+    discountPercent: 20,
     priceLarge: 11.99,
     priceRegular: 9.99,
   },
@@ -78,7 +82,9 @@ export const newsletterCardItems = [
       "A hearty bowl of quinoa, chickpeas, roasted vegetables, avocado, and a tangy tahini dressing.",
     promoDescription: [
       "Celebrate World Vegan Day with our Vegan Delight bowl. Packed with nutrients and flavor!",
+      "Buy 2 bowls and get the 3rd one FREE!",
     ],
+    promoType: "buy2get1", // buy 2 get 1 free
     priceLarge: 13.99,
     priceRegular: 11.99,
   },

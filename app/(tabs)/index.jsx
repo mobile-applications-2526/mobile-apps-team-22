@@ -11,10 +11,12 @@ import LocationCard from "../../components/location/locationCard";
 import NewsletterCard from "../../components/newsletterCard";
 
 import { newsletterCardItems, locations } from "../../assets/mockData/mockData.js";
+import { useLocation } from "../../context/LocationContext";
 
 const Home = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { selectedLocation } = useLocation();
 
   const handleNext = () => {
     
@@ -34,6 +36,23 @@ const Home = () => {
   const handleLocationClick = () => {
     router.push('/locationSelectionPage'); 
   }
+
+  const handleNewsletterPress = (item) => {
+    if (selectedLocation) {
+      router.push({
+        pathname: "/itemDetailsPage",
+        params: { itemId: item.id, source: 'newsletter' }
+      });
+    } else {
+      router.push({
+        pathname: "/locationSelectionPage",
+        params: { 
+          pendingItemId: item.id,
+          source: 'newsletter'
+        }
+      });
+    }
+  };
 
   const activeLocation = locations && locations.length > 0 ? locations[currentIndex] : null;
 
@@ -95,7 +114,7 @@ const Home = () => {
 
           <NewsletterCard 
             item={firstNewsletterItem}
-            onPress={() => alert("You pressed the newsletter card!")}
+            onPress={() => handleNewsletterPress(firstNewsletterItem)}
           />
         </View>
         

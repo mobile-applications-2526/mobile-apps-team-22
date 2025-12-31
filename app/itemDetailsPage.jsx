@@ -6,12 +6,33 @@ import tw from 'twrnc';
 import { Colors } from '../constants/Colors';
 
 import ItemDetails from '../components/itemDetails.jsx';
-import { menuItems } from '../assets/mockData/mockData.js'; 
+import { menuItems, newsletterCardItems } from '../assets/mockData/mockData.js'; 
 
 const ItemDetailsPage = () => {
-    const { itemId } = useLocalSearchParams(); 
+    const { itemId, source } = useLocalSearchParams(); 
 
-    const item = menuItems.find(i => i.id === parseInt(itemId));
+    let item = null;
+    
+    if (source === 'newsletter') {
+        const newsletterItem = newsletterCardItems.find(i => i.id === parseInt(itemId));
+        if (newsletterItem) {
+            // Transform newsletter item to match menu item structure
+            item = {
+                id: newsletterItem.id,
+                name: newsletterItem.title,
+                description: newsletterItem.description,
+                image: newsletterItem.image,
+                priceRegular: newsletterItem.priceRegular,
+                priceLarge: newsletterItem.priceLarge,
+                promoDescription: newsletterItem.promoDescription,
+                promoType: newsletterItem.promoType,
+                discountPercent: newsletterItem.discountPercent,
+                date: newsletterItem.date,
+            };
+        }
+    } else {
+        item = menuItems.find(i => i.id === parseInt(itemId));
+    }
 
     if (!item) {
         return (
@@ -26,7 +47,7 @@ const ItemDetailsPage = () => {
     return (
         <SafeAreaView style={tw`flex-1 bg-white`} edges={['right', 'left']}>
     
-            <Stack.Screen options={{ title: 'Menu' }} />
+            <Stack.Screen options={{ title: source === 'newsletter' ? 'Promotion' : 'Menu' }} />
             
             <ItemDetails item={item} />
         </SafeAreaView>

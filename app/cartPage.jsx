@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, FlatList, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, FlatList, Alert, ActivityIndicator } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import tw from 'twrnc';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,6 +9,7 @@ import CartItemCard from '../components/cart/cartItemCard.jsx';
 import { useCart } from '../context/CartContext';
 import { useLocation } from '../context/LocationContext';
 import { useAuth } from '../context/AuthContext'; 
+import { supabase } from '../utils/supabase';
 
 const generateTimeSlots = () => {
   const slots = ["ASAP"];
@@ -30,12 +31,14 @@ const TIME_SLOTS = generateTimeSlots();
 
 const CartPage = () => {
   const router = useRouter();
-  const { cartItems, updateQuantity, subtotal, vat, total } = useCart();
+  
+  const { cartItems, updateQuantity, subtotal, vat, total, clearCart } = useCart(); 
   const { selectedLocation } = useLocation();
   const { session } = useAuth(); 
 
   const [pickupTime, setPickupTime] = useState("ASAP");
   const [isTimeModalVisible, setTimeModalVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSelectTime = (time) => {
     setPickupTime(time);
@@ -49,7 +52,7 @@ const CartPage = () => {
     });
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cartItems.length === 0) return;
 
     if (!session) {
@@ -63,7 +66,7 @@ const CartPage = () => {
             onPress: () => {
               router.push({
                 pathname: '/login',
-                params: { returnTo: 'CartPage' } 
+                params: { returnTo: 'cartPage' }  
               });
             }
           }
@@ -72,7 +75,41 @@ const CartPage = () => {
       return;
     }
 
-    console.log("User is logged in. Proceeding to payment...");
+    if (!selectedLocation) {
+      Alert.alert("Location Required", "Please select a pickup location.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.from('orders').insert({
+        user_id: session.user.id,
+        location_data: selectedLocation, 
+        items_data: cartItems,          
+        total_price: total,
+        pickup_time: pickupTime,
+      });
+
+      if (error) throw error;
+
+
+      Alert.alert("Success!", "Your order has been placed.", [
+        {
+          text: "OK",
+          onPress: () => {
+            clearCart();
+            router.replace('/');
+          }
+        }
+      ]);
+
+    } catch (error) {
+      console.log("Checkout Error:", error);
+      Alert.alert("Error", "Could not place order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const totalItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -84,17 +121,14 @@ const CartPage = () => {
       <ScrollView contentContainerStyle={tw`p-5 pb-40`}>
         
         <View style={tw`flex-row justify-between items-start mb-8`}>
-          
           <TouchableOpacity 
             onPress={handleChangeLocation} 
             style={tw`flex-1 mr-4 active:opacity-60`}
           >
             <View style={tw`flex-row items-baseline`}>
               <Text style={tw`text-lg font-bold text-black`}>Pickup Order at:</Text>
-              
               <Text style={tw`text-[#E1503F] font-bold text-sm ml-2`}>Change</Text>
             </View>
-            
             <Text style={tw`text-gray-500 text-sm mt-1`}>
               {selectedLocation ? selectedLocation.address : 'Please select a location'}
             </Text>
@@ -135,12 +169,10 @@ const CartPage = () => {
 
         <View style={tw`border-t border-gray-200 pt-4`}>
           <Text style={tw`text-xl font-bold mb-4`}>Summary</Text>
-          
           <View style={tw`flex-row justify-between mb-2`}>
             <Text style={tw`text-gray-500 italic text-lg`}>Subtotal</Text>
             <Text style={tw`font-bold text-gray-600 text-lg`}>${subtotal.toFixed(2)}</Text>
           </View>
-          
           <View style={tw`flex-row justify-between mb-6`}>
             <Text style={tw`text-gray-500 italic text-lg`}>VAT</Text>
             <Text style={tw`font-bold text-gray-600 text-lg`}>${vat.toFixed(2)}</Text>
@@ -157,8 +189,14 @@ const CartPage = () => {
 
         <TouchableOpacity 
             onPress={handleCheckout}
-            style={tw`bg-[#E1503F] w-full py-4 rounded-full items-center shadow-md`}>
-          <Text style={tw`text-white text-xl font-bold`}>Checkout</Text>
+            disabled={isSubmitting}
+            style={tw`bg-[#E1503F] w-full py-4 rounded-full items-center shadow-md flex-row justify-center`}
+        >
+          {isSubmitting ? (
+            <ActivityIndicator color="white" />
+          ) : (
+            <Text style={tw`text-white text-xl font-bold`}>Checkout</Text>
+          )}
         </TouchableOpacity>
       </View>
 
