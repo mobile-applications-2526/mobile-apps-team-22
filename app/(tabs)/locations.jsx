@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
+import { useRouter } from 'expo-router';
 
 import LocationList from '../../components/location/locationList.jsx';
 
 const Locations = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={tw`flex-1 bg-white`} edges={['']}>
       <View style={tw`flex-1 justify-between`}>
@@ -28,7 +31,7 @@ const Locations = () => {
         <View style={tw`px-5 py-2 border-t border-gray-100`}>
           <TouchableOpacity 
             style={tw`bg-[#E1503F] rounded-full py-4 items-center`}
-            onPress={() => alert('Contact Us tapped!')}
+            onPress={() => router.push('/contact')}
           >
             <Text style={tw`text-[#EEDAB5] font-bold text-lg`}>
               Contact Us
